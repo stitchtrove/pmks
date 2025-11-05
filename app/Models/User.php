@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // any user can log in
+    public function canAccessPanel(\Filament\Panel $panel): bool
+    {
+        return true;
+    }
 }
