@@ -12,6 +12,7 @@ use Filament\Schemas\Schema;
 use Filament\Forms;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Group;
+use App\Filament\EditorPlugins\RichEditorPlugins;
 
 class NoteForm
 {
@@ -26,6 +27,9 @@ class NoteForm
                         RichEditor::make('content')
                             ->required()
                             ->extraInputAttributes(['style' => 'min-height: 50vh; overflow-y: auto;'])
+                            ->plugins([
+                                RichEditorPlugins::make(),
+                            ])
                             ->columnSpanFull(),
                     ]),
                 ])->columnSpan(2)->columns(1),
