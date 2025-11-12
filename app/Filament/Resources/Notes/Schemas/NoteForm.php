@@ -27,9 +27,6 @@ class NoteForm
                         RichEditor::make('content')
                             ->required()
                             ->extraInputAttributes(['style' => 'min-height: 50vh; overflow-y: auto;'])
-                            ->plugins([
-                                RichEditorPlugins::make(),
-                            ])
                             ->columnSpanFull(),
                     ]),
                 ])->columnSpan(2)->columns(1),
@@ -68,12 +65,11 @@ class NoteForm
                     ]),
                     Section::make('Other')->schema([
                         TextInput::make('uuid')
-                            ->label('UUID')
-                            ->required(),
+                            ->label('UUID'),
                         TextInput::make('slug'),
                         DateTimePicker::make('last_reviewed_at'),
                         TextInput::make('user_id')
-                            ->required()
+                            ->required()->default(auth()->id())
                             ->numeric(),
                         Textarea::make('excerpt')
                             ->columnSpanFull(),
