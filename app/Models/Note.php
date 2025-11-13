@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Database\Factories\NoteFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Filament\Forms\Components\RichEditor\FileAttachmentProviders\SpatieMediaLibraryFileAttachmentProvider;
+use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
+use Filament\Forms\Components\RichEditor\Models\Contracts\HasRichContent;
 
-class Note extends Model
+class Note extends Model implements HasMedia, HasRichContent
 {
     /** @use HasFactory<NoteFactory> */
-    use HasFactory;
+    use HasFactory, InteractsWithMedia, InteractsWithRichContent;
 
     protected $fillable = [
         'title',
@@ -33,6 +38,23 @@ class Note extends Model
         'is_pinned' => 'boolean',
         'last_reviewed_at' => 'datetime',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('note-attachments')
+            ->useDisk('public');
+    }
+
+    public function setUpRichContent(): void
+    {
+        $this->registerRichContent('content')
+            ->fileAttachmentProvider(
+                \Filament\Forms\Components\RichEditor\FileAttachmentProviders\SpatieMediaLibraryFileAttachmentProvider::make()
+                    ->collection('note-attachments')
+                    ->preserveFilenames()
+            );
+    }
 
     // Auto-generate slug and optional fields
     protected static function booted(): void
