@@ -41,16 +41,14 @@ class Note extends Model implements HasMedia, HasRichContent
 
     public function registerMediaCollections(): void
     {
-        $this
-            ->addMediaCollection('note-attachments')
-            ->useDisk('public');
+        $this->addMediaCollection('note-attachments')->useDisk('public');
     }
 
     public function setUpRichContent(): void
     {
         $this->registerRichContent('content')
             ->fileAttachmentProvider(
-                \Filament\Forms\Components\RichEditor\FileAttachmentProviders\SpatieMediaLibraryFileAttachmentProvider::make()
+                SpatieMediaLibraryFileAttachmentProvider::make()
                     ->collection('note-attachments')
                     ->preserveFilenames()
             );
