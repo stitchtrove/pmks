@@ -39,13 +39,16 @@ class NoteForm
                             ->nullable()
                             ->label('Topic')
                             ->reactive()
-                            ->afterStateUpdated(function (callable $set, $state) {
-                                $topic = Topic::find($state);
-                                if ($topic && $topic->template) {
-                                    $set('content', $topic->template);
+                            ->afterStateUpdated(function (callable $set, $state, $get) {
+                                // if there is no content, autofill with topic template
+                                $content = $get('content');
+                                if ($content === null || $content === '<p></p>') {
+                                    $topic = Topic::find($state);
+                                    if ($topic?->template) {
+                                        $set('content', $topic->template);
+                                    }
                                 }
                             }),
-
                         Select::make('tags')
                             ->multiple()
                             ->relationship('tags', 'name')
