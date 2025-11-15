@@ -13,7 +13,7 @@ class Topic extends Model
     /** @use HasFactory<TopicFactory> */
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'description', 'template'];
 
     protected static function booted(): void
     {

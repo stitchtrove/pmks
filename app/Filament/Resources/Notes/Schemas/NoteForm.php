@@ -13,6 +13,7 @@ use Filament\Forms;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Group;
 use App\Filament\EditorPlugins\RichEditorPlugins;
+use App\Models\Topic;
 
 class NoteForm
 {
@@ -36,7 +37,14 @@ class NoteForm
                             ->relationship('topic', 'name')
                             ->searchable()
                             ->nullable()
-                            ->label('Topic'),
+                            ->label('Topic')
+                            ->reactive()
+                            ->afterStateUpdated(function (callable $set, $state) {
+                                $topic = Topic::find($state);
+                                if ($topic && $topic->template) {
+                                    $set('content', $topic->template);
+                                }
+                            }),
 
                         Select::make('tags')
                             ->multiple()
