@@ -20,7 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Resources\Notes\Widgets\QuickCreateNote as QuickCreateNoteWidget;
-
+use App\Filament\Resources\Notes\Widgets\ListNotes as ListNotesWidget;
 class HomePanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -40,6 +40,7 @@ class HomePanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 QuickCreateNoteWidget::class,
+                ListNotesWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

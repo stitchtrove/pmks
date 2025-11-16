@@ -20,6 +20,10 @@ class QuickCreateNote extends Widget implements HasForms
 
     protected string $view = 'filament.resources.notes.widgets.quick-create-post';
 
-    protected int|string|array $columnSpan = 'full';
+    protected int | string | array $columnSpan = [
+        'sm' => 1,      // 1 / 1 = full width
+        'md' => 2,      // 2 / 4 = half width
+        'xl' => 3,      
+    ];
 
 }
