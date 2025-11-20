@@ -35,22 +35,25 @@ class CreateNote extends Component implements HasSchemas
         return $schema
             ->components([
                 Select::make('topic_id')
-                ->relationship('topic', 'name')
-                ->searchable()
-                ->nullable()
-                ->label('Topic')
-                ->reactive()
-                ->afterStateUpdated(function (callable $set, $state, $get) {
-                    $content = $get('content');
-                    if ($content === null || $content === '<p></p>') {
-                        $topic = Topic::find($state);
-                        if ($topic?->template) {
-                            $set('content', $topic->template);
+                    ->label('Topic')
+                    ->nullable()
+                    ->searchable()
+                    ->options(fn () => Topic::pluck('name', 'id'))
+                    ->getOptionLabelUsing(fn ($value) => Topic::find($value)?->name)
+                    ->reactive()
+                    ->afterStateUpdated(function (callable $set, $state, $get) {
+                        $content = $get('content');
+                        if ($content === null || $content === '<p></p>') {
+                            $topic = Topic::find($state);
+                            if ($topic?->template) {
+                                $set('content', $topic->template);
+                            }
                         }
-                    }
-                }),
+                    }),
                 TextInput::make('title')->default('Quick Note' . ' ' . now()->format('d/m/y H:i')),
                 RichEditor::make('content')
+                    ->toolbarButtons([])
+                    ->extraInputAttributes(['style' => 'min-height: 25vh; overflow-y: auto;'])
                     ->required()
                     ->columnSpanFull(),
             ])
