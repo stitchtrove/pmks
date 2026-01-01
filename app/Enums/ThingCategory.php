@@ -13,8 +13,10 @@ enum ThingCategory: string
     case Work = 'work';
     case Social = 'social';
     case Admin = 'admin';
-    case Meditation = 'meditation';
+    case PubJob = 'pubjob';
     case Writing = 'writing';
+    case Game = 'game';
+    case Baking = 'baking';
 
     public static function options(): array
     {
