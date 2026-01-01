@@ -27,6 +27,9 @@ class DailyActionForm
                     ->required()
                     ->searchable(),
 
+                Hidden::make('subject_type')
+                    ->default(Thing::class),
+
                 DatePicker::make('action_date')
                     ->label('Date')
                     ->required()
