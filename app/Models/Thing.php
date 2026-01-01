@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\ThingFactory;
+use App\Enums\ThingCategory;
 
 class Thing extends Model
 {
@@ -12,6 +13,10 @@ class Thing extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'category'];
+
+    protected $casts = [
+        'category' => ThingCategory::class,
+    ];
 
     public function dailyActions()
     {

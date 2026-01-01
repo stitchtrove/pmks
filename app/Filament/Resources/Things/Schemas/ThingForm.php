@@ -4,6 +4,8 @@ namespace App\Filament\Resources\Things\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use App\Enums\ThingCategory;
 
 class ThingForm
 {
@@ -13,8 +15,10 @@ class ThingForm
             ->components([
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('category')
-                    ->required(),
+                Select::make('category')
+                ->label('Category')
+                ->options(ThingCategory::options())
+                ->required()
             ]);
     }
 }
