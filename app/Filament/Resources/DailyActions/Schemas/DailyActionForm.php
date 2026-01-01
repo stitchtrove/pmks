@@ -24,7 +24,7 @@ class DailyActionForm
 
                 Select::make('subject_id')
                     ->label('Thing')
-                    ->options(Thing::all()->pluck('name', 'id'))
+                    ->options(Thing::query()->pluck('name', 'id'))
                     ->required()
                     ->searchable(),
 
@@ -48,3 +48,7 @@ class DailyActionForm
             ]);
     }
 }
+Line   Filament\Resources\DailyActions\Schemas\DailyActionForm.php
+ ------ ---------------------------------------------------------------------------------
+  27     Called 'pluck' on Laravel collection, but could have been retrieved as a query.
+         �  larastan.noUnnecessaryCollectionCall

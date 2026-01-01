@@ -16,8 +16,8 @@ class DailyActionsTable
 
             ->columns([
                 TextColumn::make('action.name')->label('Action'),
-                TextColumn::make('subject.name')->label('Thing')->getStateUsing(fn ($record) => $record->subject?->name ?? '—'),
-                TextColumn::make('subject.category')->label('Category')->getStateUsing(fn ($record) => $record->subject?->category->label() ?? '—'),
+                TextColumn::make('subject.name')->label('Thing')->getStateUsing(fn ($record) => $record->subject->name ?? '—'),
+                TextColumn::make('subject.category')->label('Category')->getStateUsing(fn ($record) => $record->subject->category->label() ?? '—'),
                 TextColumn::make('action_date')->date()->label('Date'),
                 TextColumn::make('length')->label('Length'),
                 TextColumn::make('notes')->label('Notes'),
