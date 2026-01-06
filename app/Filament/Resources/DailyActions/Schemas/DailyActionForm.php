@@ -9,6 +9,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Hidden;
 use Filament\Schemas\Schema;
 use App\Models\Thing;
+use App\Models\Action;
 
 class DailyActionForm
 {
@@ -19,6 +20,7 @@ class DailyActionForm
                 Select::make('action_id')
                     ->label('Action')
                     ->relationship('action', 'name')
+                    ->options(Action::query()->pluck('name', 'id'))
                     ->required()
                     ->searchable(), // searchable dropdown for many actions
 
@@ -48,7 +50,3 @@ class DailyActionForm
             ]);
     }
 }
-Line   Filament\Resources\DailyActions\Schemas\DailyActionForm.php
- ------ ---------------------------------------------------------------------------------
-  27     Called 'pluck' on Laravel collection, but could have been retrieved as a query.
-         �  larastan.noUnnecessaryCollectionCall
