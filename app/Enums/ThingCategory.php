@@ -22,6 +22,9 @@ enum ThingCategory: string
     case Embroidery = 'embroidery';
     case Knitting = 'knitting';
     case Development = 'development';
+    case Gig = 'gig';
+    case EatingOut = 'eating_out';
+    case Other = 'other';
 
     public static function options(): array
     {
@@ -36,6 +39,7 @@ enum ThingCategory: string
             self::Tv => 'TV',
             self::PubJob => 'Pub Job',
             self::CrossStitch => 'Cross Stitch',
+            self::EatingOut => 'Eating Out',
             default => ucwords(str_replace('_', ' ', $this->value)),
         };
     }

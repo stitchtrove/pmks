@@ -21,10 +21,14 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Resources\Notes\Widgets\QuickCreateNote as QuickCreateNoteWidget;
 use App\Filament\Resources\Notes\Widgets\ListNotes as ListNotesWidget;
+use Filament\Notifications\Livewire\Notifications;
+use Filament\Support\Enums\VerticalAlignment;
 class HomePanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        Notifications::verticalAlignment(VerticalAlignment::End);
+
         return $panel
             ->default()
             ->id('home')
