@@ -60,6 +60,22 @@ return [
             'report' => false,
         ],
 
+        // Digital ocean spaces
+        'do' => [
+            'driver' => 's3',
+            'key' => env('DO_SPACES_KEY'),
+            'secret' => env('DO_SPACES_SECRET'),
+            'region' => env('DO_SPACES_REGION'),
+            'bucket' => env('DO_SPACES_BUCKET'),
+            'url' => env('DO_URL'),
+            'endpoint' => env('DO_SPACES_ENDPOINT'),
+            'cdn_endpoint' => env('DO_CDN_ENDPOINT'),
+            'directory' => env('DO_DIRECTORY'),
+            'use_path_style_endpoint' => false,
+            'throw' => true,
+            'bucket_endpoint' => false,
+            'visibility' => 'public',
+        ],
     ],
 
     /*

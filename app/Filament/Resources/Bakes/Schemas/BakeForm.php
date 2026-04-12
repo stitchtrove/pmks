@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources\Bakes\Schemas;
 
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class BakeForm
@@ -41,12 +42,27 @@ class BakeForm
                     ->searchable()
                     ->preload()->placeholder('None')
                     ->nullable(),
-                MarkdownEditor::make('content')
+                Select::make('flours')
+                    ->relationship('flours', 'name')
+                    ->multiple()
+                    ->searchable()
+                    ->preload(),
+                RichEditor::make('content')
                     ->required()
+                    ->fileAttachmentsDisk('do')
+                    ->fileAttachmentsDirectory('bakes')
+                    ->fileAttachmentsVisibility('public')
                     ->columnSpanFull(),
-                FileUpload::make('image_path')
-                    ->image()
+                FileUpload::make('image_path')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->disk('do')
+                    ->directory('bakes')
+                    ->label('Featured Image')
                     ->columnSpanFull(),
+                Toggle::make('published')
+                    ->label('Published')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->default(false)
             ]);
     }
 }
