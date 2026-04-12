@@ -44,6 +44,7 @@ class BakeForm
                     ->nullable(),
                 Select::make('flours')
                     ->relationship('flours', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => "{$record->name} ({$record->shop})")
                     ->multiple()
                     ->searchable()
                     ->preload(),
