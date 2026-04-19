@@ -7,6 +7,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use App\Http\Services\OpenLibraryService;
 use Filament\Notifications\Notification;
+use Filament\Forms\Components\Select;
 
 class BookForm
 {
@@ -66,6 +67,16 @@ class BookForm
                     ->numeric()
                     ->minValue(1)
                     ->maxValue(5),
+
+                Select::make('status')
+                    ->options([
+                        'wishlist' => 'Wishlist',
+                        'tbr' => 'To Be Read',
+                        'reading' => 'Reading',
+                        'read' => 'Read',
+                    ])
+                    ->default('wishlist')
+                    ->required(),
 
 
             ]);

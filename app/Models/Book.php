@@ -12,7 +12,7 @@ class Book extends Model
     /** @use HasFactory<ActionFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'authors', 'isbn', 'published_date', 'cover_url', 'number_of_pages', 'rating', 'description', 'publisher'];
+    protected $fillable = ['title', 'authors', 'isbn', 'published_date', 'cover_url', 'number_of_pages', 'rating', 'description', 'publisher', 'status'];
 
     public function readings()
     {
