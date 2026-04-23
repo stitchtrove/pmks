@@ -20,6 +20,7 @@ class Bake extends Model
         'type',
         'subtype',
         'related_bake_id',
+        'created_at',
     ];
 
     protected $casts = [

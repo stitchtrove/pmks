@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
@@ -48,6 +49,10 @@ class BakeForm
                     ->multiple()
                     ->searchable()
                     ->preload(),
+                DateTimePicker::make('created_at')
+                    ->label('Baked at')
+                    ->default(now())
+                    ->required(),
                 RichEditor::make('content')
                     ->required()
                     ->fileAttachmentsDisk('do')

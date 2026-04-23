@@ -1,0 +1,12 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* Always show breadcrumbs on mobile */
+@media (max-width: 640px) {
+    .fi-breadcrumbs {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+}

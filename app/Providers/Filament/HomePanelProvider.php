@@ -46,6 +46,7 @@ class HomePanelProvider extends PanelProvider
                 QuickCreateNoteWidget::class,
                 ListNotesWidget::class,
             ])
+            ->viteTheme('resources/css/filament/home/theme.css')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
