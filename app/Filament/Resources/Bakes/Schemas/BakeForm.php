@@ -55,7 +55,7 @@ class BakeForm
                     ->fileAttachmentsVisibility('public')
                     ->columnSpanFull(),
                 FileUpload::make('image_path')->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->disk('do')
+                    ->disk('do')->maxSize(10240)
                     ->directory('bakes')
                     ->label('Featured Image')
                     ->columnSpanFull(),
