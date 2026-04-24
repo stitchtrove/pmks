@@ -23,6 +23,8 @@ use App\Filament\Resources\Notes\Widgets\QuickCreateNote as QuickCreateNoteWidge
 use App\Filament\Resources\Notes\Widgets\ListNotes as ListNotesWidget;
 use Filament\Notifications\Livewire\Notifications;
 use Filament\Support\Enums\VerticalAlignment;
+use Filament\Auth\MultiFactor\App\AppAuthentication;
+
 class HomePanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -45,6 +47,9 @@ class HomePanelProvider extends PanelProvider
             ->widgets([
                 QuickCreateNoteWidget::class,
                 ListNotesWidget::class,
+            ])
+            ->multiFactorAuthentication([
+                AppAuthentication::make(),
             ])
             ->viteTheme('resources/css/filament/home/theme.css')
             ->middleware([
