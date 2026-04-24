@@ -55,6 +55,11 @@ class BakeForm
                     ->required(),
                 RichEditor::make('content')
                     ->required()
+                     ->floatingToolbars([
+                        'paragraph' => [
+                            'bold', 'italic', 'underline', 'strike', 'link', 'attachFiles'
+                        ]
+                    ])
                     ->fileAttachmentsDisk('do')
                     ->fileAttachmentsDirectory('bakes')
                     ->fileAttachmentsVisibility('public')

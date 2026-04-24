@@ -13,7 +13,14 @@ class EditBake extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+        ];
+    }
+    protected function getFormActions(): array
+    {
+        return [
+            ...parent::getFormActions(), // keeps the default Save button
             DeleteAction::make(),
         ];
+    
     }
 }
