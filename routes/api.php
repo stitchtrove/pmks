@@ -17,7 +17,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/bakes', function (Request $request) {
         return response()->json([
             'status' => 'success',
-            'data' => BakeResource::collection(Bake::where('published', true)->orderBy('created_at')->get()),
+            'data' => BakeResource::collection(Bake::where('published', true)->orderBy('created_at', 'desc')->get()),
         ]);
     });
     Route::get('/dailyactions', function (Request $request) {
