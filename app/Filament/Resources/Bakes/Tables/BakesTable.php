@@ -52,8 +52,17 @@ class BakesTable
                 EditAction::make(),
                 ReplicateAction::make()
                     ->mutateRecordDataUsing(function (array $data): array {
+                        // tbd: can we also remove all images from copy
+                        // tbd: can we set the related bake to the duplicated bake?
+                        // tbd: can we auto set the flours to the same as the original bake?
                         $baseTitle = preg_replace('/ \(Copy.*\)$/', '', $data['name']);
+                        $data['created_at'] = now();
+                        $data['published'] = false;
+                        $data['updated_at'] = null;
+                        $data['related_bake_id'] = null;
                         $data['name'] = $baseTitle . ' (Copy)';
+                        $data['image_path'] = null;
+                        $data['slug'] = null;
                         return $data;
                     }),
             ])
