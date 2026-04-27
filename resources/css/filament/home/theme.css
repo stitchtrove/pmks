@@ -10,3 +10,7 @@
         flex-wrap: wrap;
     }
 }
+
+.fi-prose img {
+    max-width: 150px;
+}
