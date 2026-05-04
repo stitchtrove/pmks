@@ -231,8 +231,8 @@ class HardCoverBookCsvImporter
             $bookData['rating'] = (float) $bookData['rating'];
         }
 
-        if (isset($bookData['published_date'])) {
-            $bookData['published_date'] = $this->parseDate($bookData['published_date']);
+        if (isset($bookData['published_year'])) {
+            $bookData['published_year'] = $this->parseDate($bookData['published_year']);
         }
 
         if (isset($bookData['status'])) {

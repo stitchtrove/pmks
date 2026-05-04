@@ -12,10 +12,17 @@ class Book extends Model
     /** @use HasFactory<ActionFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'authors', 'isbn', 'published_date', 'cover_url', 'number_of_pages', 'rating', 'description', 'publisher', 'status'];
+    protected $fillable = ['title', 'authors', 'isbn', 'published_year', 'cover_url', 'number_of_pages', 'rating', 'description', 'publisher', 'status'];
 
     public function readings()
     {
         return $this->hasMany(BookReading::class);
     }
+
+    public const STATUSES = [
+        'wishlist' => 'Wishlist',
+        'tbr' => 'To Be Read',
+        'reading' => 'Reading',
+        'read' => 'Read',
+    ];
 }

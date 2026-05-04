@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use App\Models\Book;
 
 class BooksTable
 {
@@ -17,9 +18,19 @@ class BooksTable
             ->columns([
                 TextColumn::make('title')->label('Title')->sortable()->searchable(),
                 TextColumn::make('authors')->label('Author')->sortable()->searchable(),
-                TextColumn::make('number_of_pages')->label('Number of Pages')->sortable(),
-                TextColumn::make('isbn')->label('ISBN')->sortable()->searchable(),
-                TextColumn::make('status')->label('Status')->sortable()->searchable(),
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
+                    ->formatStateUsing(fn ($state) => Book::STATUSES[$state] ?? $state)
+                    ->color(fn (string $state): string => match ($state) {
+                        'wishlist' => 'gray',
+                        'tbr' => 'warning',
+                        'reading' => 'info',
+                        'read' => 'success',
+                        default => 'gray',
+                    })
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                  SelectFilter::make('status')
