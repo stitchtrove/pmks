@@ -9,6 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 class EditBake extends EditRecord
 {
     protected static string $resource = BakeResource::class;
+    public static bool $formActionsAreSticky = true;
 
     protected function getHeaderActions(): array
     {

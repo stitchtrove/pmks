@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBake extends CreateRecord
 {
     protected static string $resource = BakeResource::class;
+
+    public static bool $formActionsAreSticky = true;
 }
